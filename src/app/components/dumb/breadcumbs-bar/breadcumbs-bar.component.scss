@@ -1,0 +1,12 @@
+:host {
+  border-bottom: solid 1px gray;
+  justify-content: left;
+  align-items: center;
+  height: 40px;
+  display: flex;
+}
+:host span {
+  height: 25px;
+  padding: 5px;
+  text-align: center;
+}

@@ -1,0 +1,14 @@
+:host {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.events {
+  position: absolute;
+}
+
+.day-number {
+  flex-grow: 1;
+}

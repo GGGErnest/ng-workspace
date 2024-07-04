@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.month {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border: solid 1px gray;
+  padding: 5px;
+  min-width: 300px;
+  min-height: 300px;
+}
+
+.month span {
+  flex-grow: 1;
+  text-align: center;
+  max-height: 30px;
+}
+
+.month days {
+  flex-grow: 1;
+}

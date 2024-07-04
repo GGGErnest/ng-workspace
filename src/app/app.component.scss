@@ -1,0 +1,60 @@
+:host {
+  --breadcumbs-heigth: 55px;
+}
+
+navba {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+mat-sidenav-container {
+  width: auto;
+  height: 100%;
+  border: 1px solid #555;
+  background: white;
+}
+
+mat-sidenav {
+  border-radius: 0px;
+  padding: 5px;
+  width: 300px;
+}
+
+mat-sidenav-content {
+}
+
+mat-sidenav-content breadcumbs-bar {
+}
+
+breadcumbs-bar {
+  height: var(--breadcumbs-heigth);
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
+.sidenav {
+  padding: 0px;
+  margin: 0px;
+}
+
+.sidenav li {
+  list-style-type: none;
+  padding: 5px;
+}
+
+.sidebar-toggle {
+  text-align: right;
+}
+
+.content {
+  marging-top: 2px;
+  padding: 5px;
+  height: calc(100% - var(--breadcumbs-heigth));
+  display: flex;
+}

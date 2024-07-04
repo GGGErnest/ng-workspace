@@ -1,0 +1,9 @@
+<ng-content></ng-content>
+@for (breadcum of breadcumbs(); track breadcum; let last = $last) {
+  <span>
+    {{ breadcum }}
+  </span>
+  @if (!last) {
+    <span> / </span>
+  }
+}
