@@ -1,0 +1,104 @@
+{
+  "name": "ng-workspace",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "apps/ng-workspace/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "options": {
+        "outputPath": "dist/apps/ng-workspace",
+        "index": "apps/ng-workspace/src/index.html",
+        "browser": "apps/ng-workspace/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/ng-workspace/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/ng-workspace/src/favicon.ico",
+          "apps/ng-workspace/src/assets"
+        ],
+        "styles": [
+          "apps/ng-workspace/@angular/material/prebuilt-themes/cyan-orange.css",
+          "apps/ng-workspace/src/styles.scss"
+        ],
+        "scripts": [],
+        "server": "apps/ng-workspace/src/main.server.ts",
+        "prerender": true,
+        "ssr": false
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "ng-workspace:build:production"
+        },
+        "development": {
+          "buildTarget": "ng-workspace:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "ng-workspace:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "polyfills": ["zone.js", "zone.js/testing"],
+        "tsConfig": "apps/ng-workspace/tsconfig.spec.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/ng-workspace/src/favicon.ico",
+          "apps/ng-workspace/src/assets"
+        ],
+        "styles": [
+          "apps/ng-workspace/@angular/material/prebuilt-themes/cyan-orange.css",
+          "apps/ng-workspace/src/styles.scss"
+        ],
+        "scripts": []
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/ng-workspace/**/*.ts",
+          "apps/ng-workspace/**/*.html"
+        ]
+      }
+    }
+  }
+}

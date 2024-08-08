@@ -1,0 +1,57 @@
+<div class="header">
+  @if (headerLeftTitle !== "") {
+  <button role="button" (click)="onCurrentViewClick()" class="header-left">
+    {{ headerLeftTitle }}
+  </button>
+  } @else {
+  <span class="header-left-placeyholder"></span>
+  }
+  <div class="header-center">
+    <button
+      role="button"
+      [class.active]="currentView === 'day'"
+      (click)="currentView = 'day'"
+    >
+      Day
+    </button>
+    <button
+      role="button"
+      [class.active]="currentView === 'week'"
+      (click)="currentView = 'week'"
+    >
+      Week
+    </button>
+    <button
+      role="button"
+      [class.active]="currentView === 'month'"
+      (click)="currentView = 'month'"
+    >
+      Month
+    </button>
+    <button
+      role="button"
+      [class.active]="currentView === 'year'"
+      (click)="currentView = 'year'"
+    >
+      Year
+    </button>
+  </div>
+  <div class="header-right">
+    <button role="button">+</button>
+  </div>
+</div>
+<div class="body">
+  @switch (currentView) { @case ("year") {
+  <year-view
+    [startDate]="startDate()"
+    [endDate]="endDate()"
+    (yearClicked)="onYearClicked($any($event))"
+  ></year-view>
+  } @case ("month") {
+  <month-view></month-view>
+  } @case ("day") {
+  <day-view></day-view>
+  } @case ("week") {
+  <week-view></week-view>
+  } }
+</div>

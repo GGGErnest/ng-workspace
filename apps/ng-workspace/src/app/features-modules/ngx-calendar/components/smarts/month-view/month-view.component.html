@@ -1,0 +1,13 @@
+<span class="header">Sunday</span>
+<span class="header">Monday</span>
+<span class="header">Tuesday</span>
+<span class="header">Wednesday</span>
+<span class="header">Thursday</span>
+<span class="header">Friday</span>
+<span class="header">Saturday</span>
+@for (week of this.monthDaysByWeek(); track week; let i = $index) { @for (day of
+week; track day.getTime(); let u = $index) {
+<day [day]="day">
+  {{ day.getDate() }}
+</day>
+} }
