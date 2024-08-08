@@ -1,7 +1,7 @@
 {
   "defaultBase": "main",
   "namedInputs": {
-    "sharedGlobals": [],
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"],
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
@@ -31,5 +31,5 @@
       "cache": true
     }
   },
-  "nxCloudAccessToken": "ZWUyOTRjZjUtYTc1OS00MjBkLWE4YmUtMDE2NGJjYjA4ODNkfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "MTUyYTIwZGEtNTAwMS00MzhhLTlkNWMtM2JlZDM5YjE2Y2I5fHJlYWQ="
 }
