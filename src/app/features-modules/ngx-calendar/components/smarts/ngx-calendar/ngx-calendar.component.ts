@@ -26,8 +26,8 @@ type ViewTypes = 'year' | 'month' | 'day' | 'week';
 })
 export class NgxCalendarComponent {
   public headerLeftTitle = '';
-  public startDate = input<number | Date>(1970);
-  public endDate = input<number | Date>(new Date());
+  public startDate = input<Date>(new Date(1970, 1, 1));
+  public endDate = input<Date>(new Date());
   public currentView: ViewTypes = 'month';
 
   onCurrentViewClick(): void {}

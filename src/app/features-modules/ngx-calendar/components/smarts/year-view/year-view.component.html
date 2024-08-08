@@ -1,5 +1,9 @@
-<years
-  [startDate]="startDate()"
-  [endDate]="endDate()"
-  (yearClicked)="onYearClicked($any($event))"
-></years>
+<div class="header">
+  <h3>{{ currentYear.getFullYear() }}</h3>
+  <div class="header-right">
+    <button role="button"><</button>
+    <button role="button">Today</button>
+    <button role="button">></button>
+  </div>
+</div>
+<months [year]="currentYear"></months>

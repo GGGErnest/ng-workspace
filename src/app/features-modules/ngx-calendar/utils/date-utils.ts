@@ -1,34 +1,6 @@
-export const MONTHS_NAMES: MonthName[] = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'Augost',
-  'September',
-  'Octuber',
-  'Dicember',
-  'November',
-];
+import { CalendarYear, MonthName } from '../types/types';
 
-export enum Month {
-  'January' = 1,
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'Augost',
-  'September',
-  'Octuber',
-  'November',
-  'Dicember',
-}
-
-export enum WeekDay {
+enum WeekDay {
   'Sunday',
   'Monday',
   'Tuesday',
@@ -38,23 +10,24 @@ export enum WeekDay {
   'Saturday',
 }
 
-export type MonthName = keyof typeof Month;
-export type DaysOfTheWeek = keyof typeof WeekDay;
-export type DaysGroupedByWeekdays = {
-  [key in keyof DaysOfTheWeek]: Date[];
-};
+type DaysOfTheWeek = keyof typeof WeekDay;
 
 export function generateYearsBetween(
-  start: number | Date = 1970,
-  end: number | Date = new Date(),
-): number[] {
-  const endDate = typeof end === 'number' ? end : end.getFullYear();
-  let startDate = typeof start === 'number' ? start : start.getFullYear();
-  let years = [];
+  start: Date,
+  end: Date = new Date(),
+): Date[] {
+  const years: Date[] = [];
+  const yearsToGenerate = end.getFullYear() - start.getFullYear();
+  years.push(new Date(start.getFullYear(), start.getMonth(), start.getDate()));
 
-  for (var i = startDate; i <= endDate; i++) {
-    years.push(startDate);
-    startDate++;
+  for (let i = 1; i <= yearsToGenerate; i++) {
+    years.push(
+      new Date(
+        years[i - 1].getFullYear() + 1,
+        start.getMonth(),
+        start.getDate(),
+      ),
+    );
   }
   return years;
 }
@@ -99,14 +72,26 @@ export function generateDaysOfMonthPerWeek(
   return generatedDays;
 }
 
-export function generateDaysOfWeek() {}
+export function generateCalendarYear(year: Date): CalendarYear {
+  const daysInMonths: CalendarYear = [];
+  for (let i = 0; i < 12; i++) {
+    daysInMonths[i] = generateDaysOfMonthPerWeek(year.getFullYear(), i);
+  }
+
+  console.log(daysInMonths);
+  return daysInMonths;
+}
 
 export function getDayOfTheWeek(day: Date, locale = 'default'): DaysOfTheWeek {
   return day.toLocaleDateString(locale, { weekday: 'long' }) as DaysOfTheWeek;
 }
 
-export function groupDateByWeek(
-  dates: Date[],
-): DaysGroupedByWeekdays | undefined {
-  return;
+export function getMonthName(day: Date, local = 'default'): string {
+  return day.toLocaleString(local, {
+    month: 'long',
+  });
+}
+
+export function addYear(date: Date): Date {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }

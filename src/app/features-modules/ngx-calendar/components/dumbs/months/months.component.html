@@ -1,5 +1,19 @@
-@for (month of months; track month) {
+@for (month of calendarYear(); track month; let i = $index) {
   <div class="month">
-    <span>{{ month }}</span>
+    <h3>{{ getMonth(i) }}</h3>
+    <div class="weeks">
+      <span class="header">Sunday</span>
+      <span class="header">Monday</span>
+      <span class="header">Tuesday</span>
+      <span class="header">Wednesday</span>
+      <span class="header">Thursday</span>
+      <span class="header">Friday</span>
+      <span class="header">Saturday</span>
+      @for (week of month; track week; let i = $index) {
+        @for (day of week; track day.getTime(); let u = $index) {
+          <span>{{ day.getDate() }}</span>
+        }
+      }
+    </div>
   </div>
 }

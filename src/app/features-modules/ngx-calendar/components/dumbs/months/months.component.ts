@@ -1,6 +1,6 @@
 import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
-import { MONTHS_NAMES, MonthName } from '../../../utils/date-utils';
+import { Component, computed, input } from '@angular/core';
+import { generateCalendarYear, getMonthName } from '../../../utils/date-utils';
 
 @Component({
   selector: 'months',
@@ -10,5 +10,10 @@ import { MONTHS_NAMES, MonthName } from '../../../utils/date-utils';
   styleUrl: './months.component.scss',
 })
 export class MonthsComponent {
-  public months: MonthName[] = MONTHS_NAMES;
+  public year = input(new Date());
+  public calendarYear = computed(() => generateCalendarYear(this.year()));
+  public calendarYearKeys = computed(() => Object.keys(this.calendarYear()));
+  public getMonth(month: number): string {
+    return getMonthName(new Date(this.year().getFullYear(), month));
+  }
 }
